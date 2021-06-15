@@ -13,7 +13,7 @@ public class Main {
 	
 	public static void main(String[] args) throws LoginException {
 		
-		String token = "your token goes here";
+		String token = "ODU0MDQ4NzgyODUzNDcyMzE3.YMeQ6Q.7IJyW_o0LiJ5zpCmZMEoYYWMa-k";
 		
 		JDABuilder jda = JDABuilder.createDefault(token);
 		jda.setStatus(OnlineStatus.IDLE);
