@@ -10,6 +10,16 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class HelloCommand extends ListenerAdapter {
 
+	/*
+	 * Episode 3
+	 */
+
+	private Main main;
+
+	public HelloCommand(Main main) {
+		this.main = main;
+	}
+
 	EmbedBuilder helloEmbed = new EmbedBuilder().setColor(Color.BLUE).setTitle("Hello!").setDescription("Hello there!");
 	EmbedBuilder reactionEmbed = new EmbedBuilder().setColor(Color.GREEN).setTitle("Thank you!")
 			.setDescription("Thank you for reacting!");
@@ -19,8 +29,8 @@ public class HelloCommand extends ListenerAdapter {
 	@Override
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-		if (event.getMessage().getContentRaw().equalsIgnoreCase(Main.PREFIX + "hello")) {
-			event.getChannel().sendMessage(helloEmbed.build()).queue(success -> {
+		if (event.getMessage().getContentRaw().equalsIgnoreCase(main.prefix + "hello")) {
+			event.getChannel().sendMessageEmbeds(helloEmbed.build()).queue(success -> {
 				success.addReaction("a:verified:854396338279284776").queue();
 				msgId = success.getIdLong();
 			});
@@ -35,7 +45,7 @@ public class HelloCommand extends ListenerAdapter {
 				return;
 			} else {
 				event.getReaction().removeReaction(event.getUser()).queue();
-				event.getChannel().sendMessage(reactionEmbed.build()).queue();
+				event.getChannel().sendMessageEmbeds(reactionEmbed.build()).queue();
 			}
 		}
 
